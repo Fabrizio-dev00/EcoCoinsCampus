@@ -1,0 +1,30 @@
+.ut-card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  margin-bottom: 18px;
+}
+.ut-card h3 { margin: 0 0 12px 0; color: #065f46; }
+
+.ut-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ut-table th, .ut-table td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; text-align: left; }
+.ut-table thead th { color: #334155; font-weight: 700; }
+
+.ut-actions { display: flex; gap: 8px; }
+
+.btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #10b981;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn.small { padding: 6px 8px; font-size: 13px; }
+.btn.warn { background: #f59e0b; }
+.btn.danger { background: #ef4444; }
+
+.ut-empty { text-align:center; color:#94a3b8; padding: 14px 0; }
+.ut-loading { padding: 18px; text-align:center; color:#065f46; font-weight:600; }

@@ -1,0 +1,2 @@
+@keyframes floatBG {0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
+.how-card, .mv-card {transition:var(--transition)}

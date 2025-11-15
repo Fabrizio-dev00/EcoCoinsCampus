@@ -1,0 +1,25 @@
+# === BACKEND (Django) ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+/media/
+staticfiles/
+venv/
+
+# === FRONTEND (React) ===
+node_modules/
+build/
+dist/
+.env
+.env.local
+coverage/
+*.log
+
+# === SISTEMA ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

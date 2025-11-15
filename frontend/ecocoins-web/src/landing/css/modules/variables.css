@@ -1,0 +1,11 @@
+:root{
+  --green-800:#065f46;
+  --green-600:#10b981;
+  --green-400:#6ee7b7;
+  --text:#0f172a;
+  --muted:#374151;
+  --bg:#f8faf8;
+  --card:#ffffff;
+  --radius:14px;
+  --transition: all .28s cubic-bezier(.2,.9,.2,1);
+}
