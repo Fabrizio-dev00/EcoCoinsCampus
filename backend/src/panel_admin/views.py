@@ -3,6 +3,54 @@ from rest_framework.response import Response
 from mongo_connection import get_db
 
 @api_view(['GET'])
+def obtener_materiales_usuario(request, usuario_id):
+    """Materiales de un usuario específico"""
+    db = get_db()
+    materiales = list(db["reciclajes"].find({"usuario_id": usuario_id}))
+    
+    # Convertir ObjectId a string
+    for mat in materiales:
+        mat["_id"] = str(mat["_id"])
+    
+    return Response(materiales)
+
+@api_view(['POST'])
+def registrar_material(request):
+    """Registrar nuevo material reciclado"""
+    db = get_db()
+    
+    tipo = request.data.get("tipo")
+    cantidad = request.data.get("cantidad")
+    usuario_id = request.data.get("usuario_id")
+    punto = request.data.get("punto_recoleccion")
+    
+    # Calcular ecocoins (ejemplo: 5 coins por kg)
+    ecocoins = cantidad * 5
+    
+    material = {
+        "tipo": tipo,
+        "cantidad": cantidad,
+        "ecocoins_generadas": ecocoins,
+        "usuario_id": usuario_id,
+        "punto_recoleccion": punto,
+        "fecha": datetime.now().isoformat()
+    }
+    
+    result = db["reciclajes"].insert_one(material)
+    material["_id"] = str(result.inserted_id)
+    
+    # Actualizar ecoCoins del usuario
+    db["usuarios"].update_one(
+        {"_id": usuario_id},
+        {"$inc": {"ecoCoins": ecocoins}}
+    )
+    
+    return Response({
+        "mensaje": "Material registrado",
+        "material": material
+    }, status=201)
+
+@api_view(['GET'])
 def obtener_usuarios(request):
     db = get_db()
     usuarios = list(db["usuarios"].find({}, {

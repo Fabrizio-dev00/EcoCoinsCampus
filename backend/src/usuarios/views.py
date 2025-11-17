@@ -4,6 +4,47 @@ from datetime import datetime
 from mongo_connection import get_db
 from bson import ObjectId
 
+
+@api_view(['POST'])
+def login_usuario(request):
+    """Login para usuarios normales"""
+    try:
+        db = get_db()
+        correo = request.data.get("correo", "").strip().lower()
+        contrasenia = request.data.get("contrasenia", "").strip()
+        
+        if not correo or not contrasenia:
+            return Response({"error": "Correo y contraseña requeridos"}, status=400)
+        
+        usuario = db["usuarios"].find_one({
+            "correo": correo,
+            "contrasenia": contrasenia
+        })
+        
+        if not usuario:
+            return Response({"error": "Credenciales incorrectas"}, status=401)
+        
+        if usuario.get("estado") != "activo":
+            return Response({"error": "Usuario suspendido"}, status=403)
+        
+        # Convertir ObjectId a string
+        usuario["_id"] = str(usuario["_id"])
+        
+        return Response({
+            "mensaje": "Login exitoso",
+            "usuario": {
+                "_id": usuario["_id"],
+                "nombre": usuario["nombre"],
+                "correo": usuario["correo"],  # ⚠️ Tu Android espera "email"
+                "rol": usuario.get("rol", "usuario"),
+                "eco_coins": usuario.get("ecoCoins", 0)
+            },
+            "token": "fake_token_123"
+        }, status=200)
+        
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
+
 # ============================================================
 # 🟢 REGISTRO DE USUARIOS
 # ============================================================
