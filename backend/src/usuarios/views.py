@@ -63,6 +63,7 @@ def registrar_usuario(request):
         nombre = request.data.get("nombre", "").strip()
         correo = request.data.get("correo", "").strip().lower()
         contrasenia = request.data.get("contrasenia", "").strip()
+        carrera = request.data.get("carrera", "").strip()
 
         # 🧩 Validaciones básicas
         if not nombre or not correo or not contrasenia:
@@ -79,23 +80,31 @@ def registrar_usuario(request):
         nuevo_usuario = {
             "nombre": nombre,
             "correo": correo,
-            "contrasenia": contrasenia,  # ⚠️ luego se encriptará
+            "contrasenia": contrasenia, 
+            "carrera": carrera,
             "fecha_registro": datetime.now(),
             "ecoCoins": 0,
-            "rol": "usuario",  # también podría ser "admin"
+            "rol": "usuario",
             "estado": "activo",
             "confirmado": False
         }
 
-        usuarios.insert_one(nuevo_usuario)
+        result = usuarios.insert_one(nuevo_usuario)
+        nuevo_usuario["_id"] = str(result.inserted_id)
+        
+        del nuevo_usuario["contrasenia"]
+
         print(f"✅ Usuario {correo} registrado correctamente")
 
-        return Response({"mensaje": "Usuario registrado correctamente 🎉"}, status=201)
+        return Response({
+            "mensaje": "Usuario registrado correctamente",
+            "usuario": nuevo_usuario,
+            "token": "fake_token_123"
+        }, status=201)
 
     except Exception as e:
         print("❌ Error en registrar_usuario:", e)
         return Response({"error": f"Error interno del servidor: {str(e)}"}, status=500)
-
 
 # ============================================================
 # 🔐 LOGIN ADMINISTRADOR
