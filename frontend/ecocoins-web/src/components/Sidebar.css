@@ -1,57 +1,586 @@
-.sidebar {
-  width: 260px;
-  background: #047857;
+/* ============================================
+   🎨 SIDEBAR LOVABLE - VERSIÓN RESPONSIVE
+   ============================================ */
+
+.sidebar-lovable {
+  width: 280px;
+  height: 100vh;
+  background: linear-gradient(180deg, #064e3b 0%, #022c22 100%);
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  color: white;
-  transition: width 0.3s ease;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 100;
 }
 
-.sidebar h2 {
-  text-align: center;
-  padding: 20px 0;
-  font-weight: 700;
-  font-size: 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+/* ============================================
+   📌 HEADER (No encoge)
+   ============================================ */
+.sidebar-header-lovable {
+  padding: 20px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 32px;
+  animation: float 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-5px) rotate(5deg); 
+  }
+}
+
+.logo-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.logo-text h2 {
   margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
 }
 
-.sidebar li {
-  margin: 8px 0;
+.logo-text p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  white-space: nowrap;
 }
 
-.sidebar button {
+/* ============================================
+   🏷️ TÍTULO DEL MENÚ
+   ============================================ */
+.menu-title {
+  padding: 20px 16px 10px 16px;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   🧭 NAVEGACIÓN
+   ============================================ */
+.sidebar-nav-lovable {
+  padding: 0 12px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 4px;
   background: transparent;
   border: none;
-  color: #d1fae5;
-  padding: 12px 20px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
   text-align: left;
-  width: 100%;
   cursor: pointer;
   transition: all 0.2s ease;
+  position: relative;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-.sidebar button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateX(6px);
+.menu-item-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  width: 24px;
+  text-align: center;
 }
 
-.sidebar button.active {
-  background: #065f46;
-  color: #fff;
+.menu-item-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  transform: translateX(3px);
+}
+
+.menu-item:hover .menu-item-icon {
+  transform: scale(1.1);
+}
+
+.menu-item.active {
+  background: rgba(16, 185, 129, 0.25);
+  color: white;
   font-weight: 600;
 }
 
-.sidebar-footer {
-  padding: 14px;
+.menu-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: #10b981;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* ============================================
+   📊 RESUMEN RÁPIDO (Compacto y con scroll)
+   ============================================ */
+.sidebar-stats {
+  padding: 12px;
+  margin: 12px 12px 16px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.stats-title {
+  margin: 0 0 10px 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.stat-item-sidebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-item-sidebar:last-child {
+  border-bottom: none;
+}
+
+.stat-item-sidebar.highlight {
+  background: rgba(16, 185, 129, 0.15);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 6px;
+  border-bottom: none;
+}
+
+.stat-icon-sidebar {
+  font-size: 20px;
+  flex-shrink: 0;
+  width: 24px;
   text-align: center;
+}
+
+.stat-content-sidebar {
+  flex: 1;
+  min-width: 0;
+}
+
+.stat-label-sidebar {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.stat-value-sidebar {
+  margin: 2px 0 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+
+.stat-item-sidebar.highlight .stat-value-sidebar {
+  color: #10b981;
+}
+
+/* ============================================
+   👤 FOOTER (Siempre al final)
+   ============================================ */
+.sidebar-footer-lovable {
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.admin-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
+}
+
+.admin-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-name {
+  margin: 0 0 3px 0;
   font-size: 13px;
-  color: #bbf7d0;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-role {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-email {
+  margin: 0;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logout-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.logout-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+}
+
+.footer-info-lovable {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.app-version,
+.copyright {
+  margin: 3px 0;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   🎨 SCROLLBAR PERSONALIZADA
+   ============================================ */
+.sidebar-lovable::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-lovable::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-lovable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.sidebar-lovable::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   📱 ZOOM Y ESCALADO
+   ============================================ */
+
+/* Para zoom del navegador 90% */
+@media (max-height: 800px) {
+  .logo-text h2 {
+    font-size: 20px;
+  }
+  
+  .logo-text p {
+    font-size: 11px;
+  }
+  
+  .menu-item {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .menu-item-icon {
+    font-size: 18px;
+  }
+  
+  .sidebar-stats {
+    padding: 10px;
+    margin: 10px 12px 12px 12px;
+  }
+  
+  .stat-value-sidebar {
+    font-size: 16px;
+  }
+  
+  .admin-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .admin-name {
+    font-size: 12px;
+  }
+}
+
+/* Para zoom del navegador 80% o menos */
+@media (max-height: 700px) {
+  .sidebar-header-lovable {
+    padding: 16px 12px;
+  }
+  
+  .logo-icon {
+    font-size: 28px;
+  }
+  
+  .logo-text h2 {
+    font-size: 18px;
+  }
+  
+  .menu-title {
+    padding: 16px 12px 8px 12px;
+    font-size: 9px;
+  }
+  
+  .menu-item {
+    padding: 8px 10px;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .menu-item-icon {
+    font-size: 16px;
+  }
+  
+  .sidebar-stats {
+    padding: 8px;
+    margin: 8px 10px 10px 10px;
+  }
+  
+  .stats-title {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+  
+  .stat-item-sidebar {
+    padding: 6px 0;
+  }
+  
+  .stat-icon-sidebar {
+    font-size: 18px;
+  }
+  
+  .stat-label-sidebar {
+    font-size: 10px;
+  }
+  
+  .stat-value-sidebar {
+    font-size: 15px;
+  }
+  
+  .sidebar-footer-lovable {
+    padding: 10px;
+  }
+  
+  .admin-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+  
+  .admin-name {
+    font-size: 11px;
+  }
+  
+  .admin-role,
+  .admin-email {
+    font-size: 10px;
+  }
+  
+  .logout-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .footer-info-lovable {
+    margin-top: 8px;
+  }
+  
+  .app-version,
+  .copyright {
+    font-size: 9px;
+  }
+}
+
+/* Para zoom del navegador 67% o ventanas muy pequeñas */
+@media (max-height: 600px) {
+  .sidebar-lovable {
+    width: 260px;
+  }
+  
+  .logo-icon {
+    font-size: 24px;
+  }
+  
+  .logo-text h2 {
+    font-size: 16px;
+  }
+  
+  .logo-text p {
+    font-size: 10px;
+  }
+  
+  .menu-item {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  
+  .stat-value-sidebar {
+    font-size: 14px;
+  }
+  
+  /* Ocultar el resumen si hay muy poco espacio */
+  .sidebar-stats {
+    display: none;
+  }
+}
+
+/* ============================================
+   📱 RESPONSIVE MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  .sidebar-lovable {
+    width: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-lovable.open {
+    transform: translateX(0);
+  }
+
+  .admin-email {
+    display: none;
+  }
+}
+
+/* ============================================
+   💻 PANTALLAS GRANDES
+   ============================================ */
+@media (min-height: 1000px) {
+  .sidebar-lovable {
+    width: 300px;
+  }
+  
+  .logo-text h2 {
+    font-size: 26px;
+  }
+  
+  .menu-item {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+  
+  .stat-value-sidebar {
+    font-size: 20px;
+  }
+}
+
+/* ============================================
+   🎯 AJUSTE AUTOMÁTICO DE TAMAÑO
+   ============================================ */
+
+/* Sidebar compacto para alturas reducidas */
+.sidebar-lovable {
+  /* Asegurar que siempre quepa todo el contenido */
+  min-height: 100vh;
+}
+
+/* Si el contenido es más alto que la ventana, permitir scroll */
+@supports (height: 100dvh) {
+  .sidebar-lovable {
+    height: 100dvh; /* Dynamic viewport height */
+  }
 }

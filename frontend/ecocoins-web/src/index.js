@@ -1,6 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+
+// ============================================
+// 🎨 CSS - IMPORTAR EN ORDEN CORRECTO
+// ============================================
+import './theme.css';              // 1️⃣ Variables globales primero
+import './index.css';              // 2️⃣ Reset y estilos base
+
+// Componentes principales
+import './components/AdminDashboard.css';
+import './components/AdminLogin.css';
+import './components/Sidebar.css';
+import './components/EstadisticasPanel.css';
+import './components/RegisterForm.css';
+import './components/UsuariosTable.css';
+
+// ============================================
+// ⚛️ COMPONENTE PRINCIPAL
+// ============================================
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,7 +28,5 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// Medición de performance (opcional)
 reportWebVitals();

@@ -1,150 +1,337 @@
-/* ==========================
-   🌿 ESTADÍSTICAS PANEL
-========================== */
+/* ============================================
+   📊 PANEL DE ESTADÍSTICAS - DISEÑO LOVABLE
+   ============================================ */
 
-.estadisticas-panel {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  padding: 24px;
-  transition: all 0.3s ease;
-  animation: fadeInUp 0.6s ease both;
+.estadisticas-panel-lovable {
+  width: 100%;
+  padding: 0;
 }
 
-.estadisticas-panel:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
-}
-
-.estadisticas-panel h2 {
-  color: #047857;
-  font-weight: 700;
-  font-size: 1.4rem;
-  margin-bottom: 20px;
+/* ============================================
+   📌 HEADER
+   ============================================ */
+.panel-header-lovable {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 6px;
+  margin-bottom: 32px;
 }
 
-/* ==========================
-   🔹 OVERVIEW STATS
-========================== */
-
-.stats-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.stat-item {
-  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
-  border: 1px solid #d1fae5;
-  border-radius: 14px;
-  padding: 16px;
-  text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(4, 120, 87, 0.12);
-}
-
-.stat-item h3 {
-  color: #065f46;
-  font-size: 0.95rem;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-.stat-item p {
-  font-size: 1.5rem;
+.header-left h1 {
+  font-size: 28px;
   font-weight: 700;
-  color: #047857;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.header-subtitle {
+  font-size: 15px;
+  color: #6b7280;
   margin: 0;
 }
 
-/* ==========================
-   📊 CHARTS
-========================== */
-
-.charts-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
+.btn-refresh-stats {
+  padding: 12px 24px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.chart-box {
+.btn-refresh-stats:hover {
   background: #f9fafb;
-  border-radius: 14px;
-  padding: 16px;
-  border: 1px solid #e5e7eb;
+  border-color: #10b981;
+  color: #10b981;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   📈 TARJETAS DE ESTADÍSTICAS
+   ============================================ */
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card-lovable {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #10b981;
   transition: all 0.3s ease;
-  position: relative;
-  animation: fadeIn 0.8s ease;
+  display: flex;
+  gap: 16px;
+  animation: fadeInUp 0.5s ease both;
 }
 
-.chart-box:hover {
-  background: #ffffff;
-  box-shadow: 0 6px 20px rgba(4, 120, 87, 0.08);
-  transform: translateY(-3px);
+.stat-card-lovable:nth-child(1) { animation-delay: 0.1s; border-left-color: #10b981; }
+.stat-card-lovable:nth-child(2) { animation-delay: 0.2s; border-left-color: #3b82f6; }
+.stat-card-lovable:nth-child(3) { animation-delay: 0.3s; border-left-color: #8b5cf6; }
+.stat-card-lovable:nth-child(4) { animation-delay: 0.4s; border-left-color: #f59e0b; }
+
+.stat-card-lovable:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.chart-box h3 {
-  font-size: 1rem;
-  color: #064e3b;
+.stat-card-icon {
+  font-size: 40px;
+  flex-shrink: 0;
+}
+
+.stat-card-content {
+  flex: 1;
+}
+
+.stat-card-label {
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 12px;
-  text-align: center;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* ==========================
-   🌱 LOADING STATE
-========================== */
+.stat-card-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  line-height: 1;
+}
 
+.stat-card-change {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.stat-card-change.positive {
+  color: #10b981;
+}
+
+.stat-card-change.negative {
+  color: #ef4444;
+}
+
+/* ============================================
+   📊 GRÁFICAS
+   ============================================ */
+.charts-grid-lovable {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.chart-card-lovable {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease both;
+}
+
+.chart-card-lovable:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.chart-card-lovable h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 20px 0;
+}
+
+/* ============================================
+   ⚡ ACTIVIDAD RECIENTE
+   ============================================ */
+.actividad-reciente-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.8s ease both;
+}
+
+.actividad-reciente-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 20px 0;
+}
+
+.actividad-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.actividad-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border-left: 4px solid #10b981;
+  transition: all 0.2s ease;
+}
+
+.actividad-item:hover {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateX(4px);
+}
+
+.actividad-left {
+  flex: 1;
+}
+
+.actividad-nombre {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 4px 0;
+}
+
+.actividad-accion {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.actividad-right {
+  text-align: right;
+}
+
+.actividad-coins {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.actividad-coins.positive {
+  color: #10b981;
+}
+
+.actividad-coins.negative {
+  color: #ef4444;
+}
+
+.actividad-tiempo {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* ============================================
+   ⏳ LOADING
+   ============================================ */
 .loading-stats {
-  text-align: center;
-  padding: 40px;
-  color: #047857;
-  font-weight: 600;
-  font-size: 1.1rem;
-  animation: pulse 1.6s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
 }
 
-/* ==========================
-   ✨ ANIMATIONS
-========================== */
+.loading-stats .spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #f3f4f6;
+  border-top: 5px solid #10b981;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
 
+.loading-stats p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #10b981;
+  margin: 0;
+}
+
+/* ============================================
+   ✨ ANIMACIONES
+   ============================================ */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-/* ==========================
+/* ============================================
    📱 RESPONSIVE
-========================== */
+   ============================================ */
+@media (max-width: 1024px) {
+  .stats-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts-grid-lovable {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 768px) {
-  .estadisticas-panel {
-    padding: 18px;
-  }
-
-  .stat-item p {
-    font-size: 1.3rem;
-  }
-
-  .charts-container {
+  .stats-cards-grid {
     grid-template-columns: 1fr;
+  }
+
+  .panel-header-lovable {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .btn-refresh-stats {
+    width: 100%;
+  }
+
+  .stat-card-value {
+    font-size: 28px;
+  }
+
+  .actividad-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .actividad-right {
+    text-align: left;
   }
 }
